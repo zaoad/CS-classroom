@@ -1,0 +1,123 @@
+<di1v class="col-md-3">
+{#<!----------------------add Assignment----------#}
+    <div class="card gedf-card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="ml-2">
+                        <div class="h5 m-0">Add assignment</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <li class="list-group-item" align="center">
+            <a href="{{ url_for('classroom_feed.assingmnet',course_id=course_info["_id"]) }}">Add Assignment</a>
+        </li>
+    </div>
+{#<!----------------------add class----------#}
+    <div class="card gedf-card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="ml-2">
+                        <div class="h5 m-0">Add classtime</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <li class="list-group-item" align="center">
+            <a href="{{ url_for('classroom_feed.class_add', course_id = course_info['_id']) }}">Add Classtime</a>
+        </li>
+    </div>
+{#    <! ------------- Assignments Part -------------- >#}
+    <div class="card gedf-card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="ml-2">
+                        <div class="h5 m-0">Your Assignments</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <li class="list-group-item" align="center">
+            <a href="#">Project progress-01</a>
+        </li>
+
+    </div>
+{#----------QUIZ------------#}
+    <div class="card gedf-card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="ml-2">
+                        <div class="h5 m-0">Add Quiz</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <li class="list-group-item" align="center">
+            <a href="{{ url_for('classroom_feed.create_mcq',c_id = course_info['_id']) }}">Create Quiz</a>
+        </li>
+
+    </div>
+    <div class="card gedf-card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="ml-2">
+                        <div class="h5 m-0">Recent Quizzes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% for quiz in quiz_list %}
+            <li class="list-group-item" align="center">
+            <a href="{{ url_for('classroom_feed.give_mcq',course_id = course_info['_id'] , quiz_id=quiz['quiz_id'])  }}">{{ quiz['quiz_name'] }}</a>
+            </li>
+        {% endfor %}
+{#        <li class="list-group-item" align="center">#}
+{#            <a href="{{ url_for('classroom_feed.create_mcq',c_id = course_info['_id']) }}">create quiz</a>#}
+{#        </li>#}
+
+    </div>
+
+{#    -----------------Notifications------------------#}
+    <div class="card gedf-card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="ml-2">
+                        <div class="h5 m-0">Notifications</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% for notify in notifications %}
+         {% if notify["notification_type"] == 'post' %}
+        <li class="list-group-item" align="center">
+            <a href=" {{ url_for('classroom_feed.show_news_feed',course_id=notify["course_id"]) }} ">@{{ notify['username'] }} post on '{{ notify['course_name'] }}' Classroom</a>
+{#            <a href="#" class="card-link">Dibyo have posted on 'SDP LAB' Classroom</a>#}
+        </li>
+            {% elif notify["notification_type"] == 'comment' %}
+        <li class="list-group-item" align="center">
+            <a href=" {{ url_for('classroom_feed.show_news_feed',course_id=notify["course_id"]) }} ">@{{ notify['username'] }} comments on @{{ notify['author'] }}'s post in '{{ notify['course_name'] }}' Classroom</a>
+{#            <a href="#" class="card-link">Dibyo have posted on 'SDP LAB' Classroom</a>#}
+        </li>
+             {% endif %}
+        {% endfor %}
+{#        <li class="list-group-item" align="center">#}
+{#            <a href="#">@Ayush posted on 'SDP LAB' Classroom</a>#}
+{#            <a href="#" class="card-link">Dibyo have posted on 'SDP LAB' Classroom</a>#}
+{#        </li>#}
+{#        <div class="li" align="center">#}
+{#            <a href="#" class="card-link">Ayush have posted on 'SDP LAB' Classroom</a>#}
+{#            <a href="#" class="card-link">@Dibyo have posted on 'SDP LAB' Classroom</a>#}
+{#        </div>#}
+    </div>
+
+</di1v>

@@ -1,0 +1,83 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta charset=utf-8>
+    <title></title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+
+        <style type="text/css">
+          .wrapper {
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+}
+      </style>
+
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
+
+
+
+    <meta charset=utf-8>
+
+
+  </head>
+  
+  <body bgcolor="#8dd8f8">
+
+
+ <div align="center"><strong><font color="#000080" size="5" face="华文楷体">Query student information<br><br><br></font></strong></div>
+
+       <table class="table1" border="1" width="600" align="center" cellspacing="0" cellpadding="0">
+
+       <tr><td height="25">Student id</td>
+                <td height="25">Student name</td>
+                <td height="25">Department name</td>
+                <td height="25">phone no</td>
+            </tr>
+
+         {% for cno, cname , cdept, cphone in student_data%}
+
+
+            <tr><td height="25">{{ cno }}</td>
+                <td height="25">{{ cname}}</td>
+                <td height="25">{{ cdept }}</td>
+                <td height="25">{{ cphone }}</td>
+                <td>
+                    <form action="/admin_stu_list" method="post">
+                        <input type="hidden" name="Id" value={{ cno }}>
+                    <button name="forwardBtn" type="submit"  >Delete</button>
+                    </form>
+
+                </td>
+
+
+            </tr>
+{#             <tr>{{ cname}}</tr>#}
+{#             <br>#}
+
+         {% endfor %}
+
+        </table>
+
+
+ <br><br>
+
+  <form action="/admin_undo_stu_delete" method="post">
+       <div class="wrapper">
+    <center><input class="w3-btn w3-black" type="submit"  value="Undo"/> </center>
+       </div>
+  </form>
+
+
+  <br><br><br>
+  </body>
+</html>

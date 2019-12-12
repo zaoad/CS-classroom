@@ -1,0 +1,104 @@
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+<style>
+    .output {
+        font: 1rem 'Fira Sans', sans-serif;
+    }
+
+    legend {
+        background-color: rgba(0, 0, 0, 0.92);
+        color: #fff;
+        padding: 3px 6px;
+    }
+
+    .control {
+        margin: 1rem 0;
+    }
+
+    input[type=text], select {
+        text-align: center;
+    }
+
+    label {
+        display: inline-block;
+        text-align: right;
+        font-size: .8rem;
+    }
+
+    .hours {
+        font-size: .7em;
+        color: #999;
+    }
+
+    form {
+        text-align: center;
+    }
+</style>
+
+
+{% extends '/tutorial/layout.html' %}
+
+{% block body %}
+    <br/>
+    <div class="jumbotron text-center">
+        {% if qno != 4%}
+            <form action="/next_mcq/{{ quiz_id }}/{{ qno }}/{{ course_id }}/{{ data[qno]['question'] }}" + method="post">
+                <h4>{{ data[qno]['question'] }}</h4>
+                <br/>
+                <div class="radio-option">
+                    <input type="radio" name="radioName1" value="option1"/>
+                    {{ data[qno]['option1'] }}
+                </div>
+                <br/>
+                <div class="radio-option">
+                    <input type="radio" name="radioName1" value="option2"/>
+                    {{ data[qno]['option2'] }}
+                </div>
+                <br/>
+                <div class="radio-option">
+                    <input type="radio" name="radioName1" value="option3"/>
+                    {{ data[qno]['option3'] }}
+                </div>
+                <br/>
+                <div class="radio-option">
+                    <input type="radio" name="radioName1" value="option4"/>
+                    {{ data[qno]['option4'] }}
+                </div>
+                <br/>
+                <div>
+                    <input type="submit" style="background-color: #3bdd79" value="Confirm and continue"/>
+                </div>
+
+            </form>
+        {% elif qno== 4 %}
+            <form action="/quiz_result/{{ quiz_id }}/{{ course_id }}/{{ data[qno]['question'] }}" + method="post">
+                <h4>{{ data[qno]['question'] }}</h4>
+                <br/>
+                <div class="radio-option">
+                    <input type="radio" name="radioName1" value="option1"/>
+                    {{ data[qno]['option1'] }}
+                </div>
+                <br/>
+                <div class="radio-option">
+                    <input type="radio" name="radioName1" value="option2"/>
+                    {{ data[qno]['option2'] }}
+                </div>
+                <br/>
+                <div class="radio-option">
+                    <input type="radio" name="radioName1" value="option3"/>
+                    {{ data[qno]['option3'] }}
+                </div>
+                <br/>
+                <div class="radio-option">
+                    <input type="radio" name="radioName1" value="option4"/>
+                    {{ data[qno]['option4'] }}
+                </div>
+            <br/>
+                <div>
+                    <input type="submit" style="background-color: #3bdd79" value="submit"/>
+                </div>
+
+            </form>
+        {% endif %}
+
+    </div>
+{% endblock %}
